@@ -49,6 +49,7 @@ class WaypointUpdater(object):
         rate = rospy.Rate(50)
 
         while not rospy.is_shutdown():
+            # check for waypoint_tree is necessary because of asynchronous callbacks
             if self.pose and self.base_waypoints and self.waypoint_tree:
                 # get closest waypoint
                 closest_waypoint_idx = self.get_closest_waypoint_idx()
@@ -56,6 +57,10 @@ class WaypointUpdater(object):
             rate.sleep()
 
     def get_closest_waypoint_idx(self):
+        """returns the index of the closest waypoint ahead of the car
+
+        :return: <int> idx
+        """
         x = self.pose.pose.position.x
         y = self.pose.pose.position.y
         closest_idx = self.waypoint_tree.query((x, y), 1)[1]
