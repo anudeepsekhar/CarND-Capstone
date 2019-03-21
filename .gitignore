@@ -4,3 +4,7 @@ build
 devel
 
 profile.tmp
+.vscode/settings.json
+ros/src/tl_detector/training_data.tar.gz
+ros/src/tl_detector/images/*
+ros/src/tl_detector/training/output.csv
